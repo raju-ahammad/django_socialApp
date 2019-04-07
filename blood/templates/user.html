@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<br>
+
+<div class="container">
+  <div class="text-center">
+    {% for user in object_list %}
+    <ul>
+      <li class="" > <a href="{% url 'detail' user.pk %}">{{ user.user.username }}</a> </li>
+    </ul>
+    {% endfor %}
+    <li class="" > <a href="{% url 'detail' object.pk %}">{{ object.user.username }}</a> </li>
+  </div>
+</div>
+<br>
+<div class="">
+  <p>{{ user.userprofile.bio }}</p>
+  <p>{{ user.userprofile.phone }}</p>
+  <p>{{ user.userprofile.city }}</p>
+</div>
+
+{% endblock  %}

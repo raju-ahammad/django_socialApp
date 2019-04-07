@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} {{ user.username }} {% endblock %}
+{% block content %}
+<br>
+<div class="conatiner mt-3 ml-5 mr-5">
+  {% with total_followers=user.followers.count %}
+  <div class="row mr-4">
+  <div class="col-sm-3 " style="margin-left: 120px; padding-left: 90px;">
+    <div class="">
+      <img src="{{ user.userprofile.image.url }}" class="img-circle" style="width: 150px; height: 150px; border-radius: 50%; " alt="profile photo">
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="">
+
+        <p style="font-size: 25px;">{{ user.username }}</p>
+        <p class=""><span class="count" > <span class="total " > {{  total_followers }} </span> follower{{ total_followers|pluralize }} </span></p>
+        <p><a href="#" data-id="{{ user.id }}" data-action="{% if request.user in user.followers.all %} un {% endif %}follow"  class="follow btn btn-info"> {% if request.user in not user.followers.all %} Follow {% else %} UnFollow {% endif %}</a></p>
+        <h4>{{user.first_name}} {{user.last_name}}</h4>
+    </div>
+  </div>
+</div>
+<br>
+
+
+<div class="card mt-4">
+  <div class="card-header ">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">About</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Post</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body text-dark">
+
+    <div class="card-body">
+      <p> Blood Group <span class="ml-3 mb-2"> : {{ user.userprofile.blood_group }}</span> </p>
+      <p>Gender <span class="ml-5 mb-2"> : {{ user.userprofile.gender }}</span></p>
+      <p>Phone No <span class="ml-4 mb-2">: {{ user.userprofile.phone }}</span></p>
+      <p>CityZone <span class="ml-4 mb-2">: {{ user.userprofile.city }}</span></p>
+      <p> Country <span class="ml-4 mb-2">: {{ user.userprofile.country }}</span></p>
+      <p class=""> Biodata : </p>
+      <p class="text-secondary">{{ user.userprofile.bio }}</p>
+      {% for users in object_list %}
+      <p>{{ users.user.username }}</p>
+      {% endfor %}
+    </div>
+  </div>
+
+  </div>
+  {% endwith %}
+</div>
+</div>
+<br>
+<br>
+<br>
+
+
+<div class="conatiner">
+
+</div>
+
+
+{% endblock  %}

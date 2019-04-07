@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} userlist {{ user.username }}{% endblock %}
+{% block content %}
+<div class="conatiner">
+  <div class="row">
+    {% for list in user_list %}
+    <div class="col-sm-3">
+      <div class="text-center">
+        <a href="{% url 'userdetail' list.pk %}"><img src="{{ list.userprofile.image.url }}" class="img-circle" style="width: 200px; height: 200px; border-radius: 50%; " alt="profile photo"></a>
+        <p class="text-"><a href="#">{{ list.username }}</a></p>
+      </div>
+
+    </div>
+
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}  book mark an image {% endblock %}
+{% block content %}
+
+<div class="conatiner">
+  <h2>UserDetailView Page</h2>
+  <div class="">
+    <a href="{% url 'userdetail' image.user.id %}"><p>Username:{{ object.user.username }}</p></a>
+    <img src="{{ object.image.url }}" class="img-fluid rounded img-thumbnail" style="width: 100%px; height: 100%px;" alt="Responsive image">
+  </div>
+</div>
+<br>
+{% endblock %}
